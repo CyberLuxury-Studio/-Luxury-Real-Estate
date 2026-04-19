@@ -20,8 +20,9 @@ Using the Next.js App Router convention for an organized, maintainable single-pa
 │   │   ├── page.tsx        # Main landing page (Single-page entry)
 │   │   └── globals.css     # Global styles & Tailwind configuration
 │   ├── components/         # Reusable UI elements
+│   │   ├── layout/         # Header and Footer
 │   │   ├── ui/             # Buttons, inputs, sliders, cards
-│   │   ├── sections/       # Hero, Features, Floorplans, Pricing, Footer
+│   │   ├── sections/       # HeroSection, FeaturesSection, FloorplanSection, PricingSection, CtaSection
 │   │   └── spline/         # Spline 3D wrapper components
 │   ├── lib/                # Utilities and helpers
 │   │   ├── utils.ts        # Tailwind merge/clsx utilities
@@ -43,38 +44,38 @@ Using the Next.js App Router convention for an organized, maintainable single-pa
 - **Visuals:**
   - **Background:** High-quality looping video of modern luxury architecture with subtle color grading to fit the cyber theme.
   - **Foreground:** Spline 3D element (e.g., a rotating abstract geometric key, holographic smart-home interface, or floating premium property model).
-- **Animations:** Fade-up text reveals. The background video uses a dark overlay mask, allowing the glowing Spline foreground to pop.
+- **Animations:** Fade-up text reveals using Framer Motion. The background video uses a dark overlay mask, allowing the glowing Spline foreground to pop.
 - **Tailwind Strategy:** `min-h-screen`, `relative`, `overflow-hidden`, `z-10` for content layering.
 
 ### B. Property Features & Smart Home Tech
 - **Layout:** Alternating grid or bento-box layout.
 - **Content:** Highlights of the modern luxury real estate (AI climate control, biometric security, infinity pools).
-- **Animations:** Scroll-triggered stagger animations. Cards float up and emit a subtle neon glow upon hover.
-- **Tailwind Strategy:** `grid`, `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`, custom hover utilities for glow effects.
+- **Animations:** Scroll-triggered stagger animations using `whileInView`. Cards float up and emit a subtle neon glow upon hover.
+- **Tailwind Strategy:** `grid`, `grid-cols-1 md:grid-cols-4`, custom hover utilities for glow effects.
 
 ### C. Floorplan Sliders
 - **Layout:** Full-width carousel/slider centered in the section.
 - **Content:** 2D floorplan images presented as high-tech glowing blueprints. Property stats (sq ft, beds, baths) shown alongside.
-- **Animations:** Smooth slide transitions. Interactive drag gestures using Framer Motion. Active floorplan scales up slightly.
-- **Tailwind Strategy:** `flex`, `overflow-x-auto`, `snap-x`, `snap-mandatory` (or utilizing a customized slider component), styling images with cyberpunk border hues.
+- **Animations:** Interactive drag gestures using Framer Motion `drag="x"`. Active floorplan scales up slightly.
+- **Tailwind Strategy:** `flex`, `overflow-x-auto`, `snap-x`, `snap-mandatory` styling images with cyberpunk border hues.
 
 ### D. Pricing / Investment Tiers
 - **Layout:** 3-column pricing cards.
 - **Content:** "Standard", "Premium", "Penthouse" tiers.
-- **Animations:** Highlighted tier (center) scales up. Hovering over a card activates an animated gradient border (running neon edge).
+- **Animations:** Highlighted tier (center) scales up. Hovering over a card activates an animated gradient border (running neon edge) configured via custom CSS variables and keyframes.
 - **Tailwind Strategy:** `bg-black/50`, `backdrop-blur-md`, `border`, `border-cyan-500/30`.
 
 ### E. CTA (Call to Action)
 - **Layout:** Centered banner with heavy visual weight.
 - **Content:** Final push to schedule a viewing or contact an agent. Email input form.
-- **Animations:** Pulsing button, magnetic hover effect on the button.
+- **Animations:** Pulsing button, fade up animation on scroll.
 - **Tailwind Strategy:** `bg-gradient-to-r`, `from-purple-900`, `to-black`, text glowing effects.
 
 ### F. Footer
 - **Layout:** Multi-column layout for links, social icons, and branding.
 - **Content:** Contact info, legal links, social media.
-- **Animations:** Simple fade-in when scrolling to the bottom.
-- **Tailwind Strategy:** `border-t`, `border-gray-800`, `text-gray-400`.
+- **Animations:** Simple layout.
+- **Tailwind Strategy:** `border-t`, `border-white/5`, `bg-surface`.
 
 ---
 
@@ -83,14 +84,14 @@ Using the Next.js App Router convention for an organized, maintainable single-pa
 This system balances the elegance of luxury real estate with the striking, high-contrast look of cyber aesthetics.
 
 ### Color Palette (Tailwind Configurable)
-- **Backgrounds:** Deep space black (`#050505`), very dark slate (`#0B0C10`).
-- **Primary Accents (Neon/Cyber):** Cyan/Electric Blue (`#00F0FF`), Neon Pink/Magenta (`#FF003C`), Electric Purple (`#8A2BE2`).
+- **Backgrounds:** Deep space black (`#050505`), very dark slate (`#131313`).
+- **Primary Accents (Neon/Cyber):** Cyan/Electric Blue (`#00f0ff`), Neon Pink/Magenta (`#ff525c`), Electric Purple (`#8523dd`).
 - **Luxury Accents:** Muted Gold or Platinum for premium text highlights to retain the luxury feel.
-- **Text:** Pure white (`#FFFFFF`) for primary headings, light silver (`#C5C6C7`) for body copy.
+- **Text:** Light silver (`#e5e2e1`) for primary text, pure white for headings.
 
 ### Typography
-- **Headings:** A sharp, geometric, slightly futuristic sans-serif (e.g., *Space Grotesk* or *Syncopate*).
-- **Body:** Clean, highly readable, modern sans-serif (e.g., *Inter* or *Manrope*).
+- **Headings:** A sharp, geometric, slightly futuristic sans-serif (Space Grotesk).
+- **Body:** Clean, highly readable, modern sans-serif (Inter).
 
 ### Spacing & Borders
 - **Spacing:** Generous padding to emulate luxury breathing room, contrasted with tight alignments for technical UI elements.
@@ -100,7 +101,6 @@ This system balances the elegance of luxury real estate with the striking, high-
 - `NeonButton`: Button with animated gradient borders and inner glow on hover.
 - `GlassCard`: Card with `backdrop-blur`, dark translucent background, and subtle cyan/magenta borders.
 - `GlowingText`: Text component that applies drop-shadows to simulate neon light.
-- `FloorplanSlider`: Interactive, swipeable 2D image carousel.
 
 ---
 
@@ -109,9 +109,9 @@ This system balances the elegance of luxury real estate with the striking, high-
 - **Entry Animations (Hero):**
   - `initial={{ opacity: 0, y: 50 }}` to `animate={{ opacity: 1, y: 0 }}` with a spring transition.
 - **Scroll Reveal (Sections):**
-  - Use `whileInView` prop to trigger fade-ins and slide-ups as the user scrolls down the landing page. `viewport={{ once: true, amount: 0.2 }}`.
-- **Hover States (Cards & Buttons):**
-  - `whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px 0px rgba(0, 240, 255, 0.5)" }}`
+  - Use `whileInView` prop to trigger fade-ins and slide-ups as the user scrolls down the landing page. `viewport={{ once: true, margin: "-100px" }}`.
+- **Staggered Lists:**
+  - Utilizing `staggerChildren` property of transition on list containers to make children appear sequentially.
 - **Slider Dragging:**
   - Leverage Framer Motion's `drag="x"` with `dragConstraints` for the floorplan 2D slider.
 
@@ -131,19 +131,15 @@ This system balances the elegance of luxury real estate with the striking, high-
 ## 6. Component Architecture
 
 ### Layout Components
-- `Header`: Navigation links and theme toggles (if any). Fixed at the top, becomes glassmorphic on scroll.
-- `Footer`: Static end-of-page links.
-
-### UI Components
-- `CyberButton.tsx`: Props - `variant (primary|secondary)`, `children`, `onClick`.
-- `BentoCard.tsx`: Props - `title`, `description`, `icon`, `glowColor`.
-- `SectionHeading.tsx`: Props - `title`, `subtitle`, `alignment`.
+- `Header.tsx`: Navigation links and theme toggles (if any). Fixed at the top, becomes glassmorphic on scroll.
+- `Footer.tsx`: Static end-of-page links.
 
 ### Feature Components
-- `HeroBackground.tsx`: Handles the `<video>` tag, auto-play, muted, looping, and the dark overlay.
-- `SplineViewer.tsx`: The dynamically imported Spline canvas wrapper.
-- `FloorplanCarousel.tsx`: Manages the state of the current active 2D floorplan and renders the Framer Motion slider.
-- `PricingTier.tsx`: Props - `tierName`, `price`, `features`, `isPopular`.
+- `HeroSection.tsx`: Handles the `<video>` tag, auto-play, muted, looping, and the dark overlay.
+- `FeaturesSection.tsx`: Uses bento grid style to showcase real estate luxury items.
+- `FloorplanSection.tsx`: Manages the state of the current active 2D floorplan and renders the Framer Motion slider.
+- `PricingSection.tsx`: Renders multiple pricing tiers, highlighting the premium/penthouse tiers.
+- `CtaSection.tsx`: Implements the CTA to capture user emails.
 
 ---
 
