@@ -1,101 +1,69 @@
 "use client";
 import { motion } from 'framer-motion';
 
+const features = [
+  {
+    title: "Level 3 Server Room",
+    desc: "Equipped with quantum cooling and zero-latency routing for instant matchmaking.",
+    icon: "dns",
+  },
+  {
+    title: "Holographic Defense",
+    desc: "Military-grade firewall shielding your guild assets from external raids.",
+    icon: "security",
+  },
+  {
+    title: "VR Training Arena",
+    desc: "Fully immersive simulation room to practice strats before the big tournament.",
+    icon: "sports_esports",
+  },
+  {
+    title: "Loot Vault",
+    desc: "Secure cold storage for your digital assets, skins, and crypto rewards.",
+    icon: "account_balance_wallet",
+  },
+];
+
 export function FeaturesSection() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
-  };
-
   return (
-    <section className="py-40 px-8 max-w-screen-2xl mx-auto relative">
-      <div className="absolute top-20 right-20 text-surface-container-highest/20 font-headline text-9xl font-black select-none architectural-heading -z-10 uppercase">
-        Features
+    <section className="py-32 px-4 md:px-12 max-w-7xl mx-auto relative">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-primary-container/10 blur-[100px] rounded-full pointer-events-none"></div>
+      
+      <div className="text-center mb-24 relative z-10">
+        <span className="font-mono text-primary-container uppercase text-xs tracking-[0.3em] font-bold">Base Upgrades</span>
+        <h3 className="font-mono text-4xl md:text-6xl text-white mt-4 uppercase tracking-tighter font-black">
+          Legendary <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-pink-500">Perks</span>
+        </h3>
       </div>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-8 h-auto md:h-[800px]"
-      >
-        <motion.div variants={item} className="md:col-span-2 md:row-span-2 relative glass-card p-14 flex flex-col justify-end group overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-30 group-hover:opacity-50 transition-opacity duration-1000">
-            <img
-              className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU4Htg41uJy0WPoPl20htXv-Ofib-6uzk5dMVZiI7BPJ1x3AmbR1Y40QwlSlm0fR9se_fFRttf_IpuJxz_Ir7FERnLh_PXRn9acB7JLbm7bYfxuKYNppbJkDFOOIeJKuV885u7NoBJVoHA0oMbmj5v0sWLAPSTvya-ihRFz0JWJ-G8BC3D8O2OcMSxTC65_FWFwUFVeQzPBjV5cETGgxT9wIE6I2oPGnjif6hTlSd-_18HuXfcug-OwuIZbw_8OHg6FIVzy5oqAAI"
-              alt="AI Climate Core"
-            />
-          </div>
-          <div className="relative z-10">
-            <span className="material-symbols-outlined text-primary-container text-5xl mb-8">
-              thermostat
-            </span>
-            <h3 className="font-headline text-4xl font-bold mb-6 architectural-heading uppercase">
-              AI Climate Core
-            </h3>
-            <p className="text-on-surface-variant font-body leading-relaxed max-w-sm text-sm">
-              Sentient environmental systems that learn your biological rhythms to
-              optimize atmosphere and oxygen levels in real-time.
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        {features.map((feature, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -10, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 100, delay: i * 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="group glass-card p-10 relative overflow-hidden border-2 border-white/5 hover:border-primary-container/50 bg-black/40 rounded-2xl cursor-pointer"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary-container/20 rounded-full blur-[40px] group-hover:bg-primary-container/40 transition-colors"></div>
+            <div className="w-16 h-16 rounded-xl bg-surface border-2 border-primary-container/30 flex items-center justify-center mb-8 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+              <span className="material-symbols-outlined text-primary-container text-3xl">
+                {feature.icon}
+              </span>
+            </div>
+            <h4 className="font-mono text-2xl text-white mb-4 uppercase font-black">{feature.title}</h4>
+            <p className="font-mono text-sm text-on-surface-variant font-light leading-relaxed">
+              {feature.desc}
             </p>
-          </div>
-        </motion.div>
-
-        <motion.div variants={item} className="md:col-span-2 relative glass-card p-12 flex flex-col justify-center group overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-20 group-hover:opacity-40 transition-opacity duration-1000">
-            <img
-              className="w-full h-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrpvNGsZOjVmLTFSWO4Q7ncui-jDpQKJaR_DFB43VEiXzPCVE4DZLvjDsPMJ6L9Y3avRyhPHo2T8_pV-9aIpue6wT9k0xKteR2EJg3sCg8FP4MAlZXsx5UC_-_2WtyBQlNVCANrp04PQYWcj2xkkG-GgGi3cgvqNMnvT5Rp80Ra9vLV05eETu-PcZYqqzyNHIk6tRfPzVWDkkfYKK3hf-uV_v0FTn7ywykb4C72JdumakdSCXJkB_zR8EbyZjtflh6puo78eiEH5k"
-              alt="Biometric Vault"
-            />
-          </div>
-          <div className="relative z-10">
-            <span className="material-symbols-outlined text-secondary-container text-4xl mb-5">
-              fingerprint
-            </span>
-            <h3 className="font-headline text-3xl font-bold mb-3 architectural-heading uppercase">
-              Biometric Vault
-            </h3>
-            <p className="text-on-surface-variant font-body text-sm max-w-xs">
-              DNA-encrypted entry protocols ensuring absolute privacy and security
-              for the discerning resident.
-            </p>
-          </div>
-        </motion.div>
-
-        <motion.div variants={item} className="md:col-span-2 relative glass-card p-12 flex flex-col justify-center group overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-20 group-hover:opacity-40 transition-opacity duration-1000">
-            <img
-              className="w-full h-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoSYZ0HgZzfU4LnESJt_4GEu6ZgK2ONBtA0ljhwGyCpOkBwigp4-PVWERkTXFW9qtd_LjAoWRwjHpiW8F0e9HBZOT-o4jd7w0LjxGXqIec1C5ozM2Ht0SXTIEYNDAlx0tvHtgf822EdIAuRjVRvC6pFBEYHsnf9lRFLH-ipEMqMH4PXPMVnLtlPK-Hqec6jDwcENBBPMG6rCMzxl3z4ZZwHXERDtaVRpNchgpqH77BMEL2NTeV608tsctAGKnqvjXwntxsQUnFXTI"
-              alt="Gravity Pools"
-            />
-          </div>
-          <div className="relative z-10">
-            <span className="material-symbols-outlined text-primary-container text-4xl mb-5">
-              pool
-            </span>
-            <h3 className="font-headline text-3xl font-bold mb-3 architectural-heading uppercase">
-              Gravity Pools
-            </h3>
-            <p className="text-on-surface-variant font-body text-sm max-w-xs">
-              Zero-gravity filtration systems in sky-high aquatic sanctuaries
-              suspended above the clouds.
-            </p>
-          </div>
-        </motion.div>
-      </motion.div>
+            <div className="mt-8 flex items-center gap-2 text-primary-container font-mono text-xs uppercase font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+               <span>Equip Upgrade</span>
+               <span className="material-symbols-outlined text-sm">arrow_right_alt</span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }

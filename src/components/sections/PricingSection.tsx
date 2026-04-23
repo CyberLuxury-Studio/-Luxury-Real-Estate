@@ -2,150 +2,89 @@
 import { motion } from 'framer-motion';
 
 export function PricingSection() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
-  };
-
   return (
-    <section className="py-40 px-8 max-w-screen-2xl mx-auto">
-      <h2 className="font-headline text-center text-6xl font-black uppercase mb-32 tracking-tighter">
-        Investment Tiers
-      </h2>
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-stretch"
-      >
-        {/* Standard */}
-        <motion.div variants={item} className="glass-card p-12 flex flex-col items-center text-center">
-          <span className="text-outline font-headline text-[10px] tracking-[0.4em] uppercase mb-6 block">
-            Baseline
-          </span>
-          <h3 className="font-headline text-3xl font-bold mb-8 architectural-heading uppercase">
-            STANDARD
+    <section className="py-32 px-4 md:px-12 bg-[#050505] relative overflow-hidden border-t-2 border-white/5">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[120px]"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-24">
+          <span className="font-mono text-primary-container uppercase text-xs tracking-[0.3em] font-bold">Unlock Tiers</span>
+          <h3 className="font-mono text-5xl md:text-7xl text-white mt-4 uppercase tracking-tighter font-black">
+            Choose Your <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-pink-500">Loadout</span>
           </h3>
-          <div className="text-5xl font-headline font-bold mb-12 text-primary-container">
-            $2.4M
-          </div>
-          <ul className="text-xs text-on-surface-variant font-body space-y-6 mb-16 text-left w-full border-t border-white/5 pt-8">
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary-container text-lg">
-                check_circle
-              </span>{" "}
-              Biometric Entry
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary-container text-lg">
-                check_circle
-              </span>{" "}
-              AI Climate Core
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary-container text-lg">
-                check_circle
-              </span>{" "}
-              Smart Glass Windows
-            </li>
-          </ul>
-          <button className="w-full py-5 bg-white/5 border border-white/10 hover:bg-white hover:text-surface transition-all font-headline uppercase text-[10px] tracking-[0.3em] font-bold mt-auto">
-            Select Tier
-          </button>
-        </motion.div>
+        </div>
 
-        {/* Penthouse */}
-        <motion.div variants={item} className="relative p-14 flex flex-col items-center text-center bg-[#1c1c1c] penthouse-glow scale-105 z-10 transition-all duration-700">
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary-container text-white px-6 py-1.5 text-[9px] font-headline tracking-[0.3em] uppercase font-black">
-            Ultra Scarcity
-          </div>
-          <span className="text-secondary-container font-headline text-[10px] tracking-[0.4em] uppercase mb-6 block">
-            The Crown
-          </span>
-          <h3 className="font-headline text-5xl font-black mb-8 architectural-heading uppercase drop-shadow-[0_0_15px_rgba(255,82,92,0.3)]">
-            PENTHOUSE
-          </h3>
-          <div className="text-6xl font-headline font-bold mb-12 text-secondary-container drop-shadow-[0_0_20px_rgba(255,82,92,0.4)]">
-            $18.5M
-          </div>
-          <ul className="text-sm text-on-surface font-body space-y-6 mb-16 text-left w-full border-t border-secondary-container/20 pt-10">
-            <li className="flex items-center gap-4">
-              <span className="material-symbols-outlined text-secondary-container">
-                stars
-              </span>{" "}
-              Full Level Ownership
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="material-symbols-outlined text-secondary-container">
-                stars
-              </span>{" "}
-              Private Landing Pad
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="material-symbols-outlined text-secondary-container">
-                stars
-              </span>{" "}
-              Holo-Theater Suite
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="material-symbols-outlined text-secondary-container">
-                stars
-              </span>{" "}
-              AI Personal Concierge
-            </li>
-          </ul>
-          <button className="w-full py-6 bg-secondary-container text-white font-headline uppercase text-[11px] font-black tracking-[0.4em] btn-glow transition-all mt-auto">
-            Acquire Asset
-          </button>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Tier 1 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            className="p-10 border-2 border-white/10 rounded-2xl bg-black/60 backdrop-blur-md"
+          >
+            <div className="bg-white/10 w-fit px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6 font-mono">LVL 1</div>
+            <h4 className="font-mono text-3xl text-white mb-2 uppercase font-black">Starter Base</h4>
+            <div className="text-4xl font-mono text-white font-black mb-8">5,000 <span className="text-sm font-light text-on-surface-variant">Credits</span></div>
+            <ul className="space-y-4 font-mono text-sm text-on-surface-variant mb-12 font-medium">
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-primary-container text-sm">check</span> Basic Defense</li>
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-primary-container text-sm">check</span> 2 Server Racks</li>
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-primary-container text-sm">check</span> Standard Map</li>
+            </ul>
+            <button className="w-full py-4 border-2 border-white/20 text-white font-mono uppercase text-xs tracking-widest hover:bg-white/10 transition-colors rounded-xl font-bold">
+              Equip
+            </button>
+          </motion.div>
 
-        {/* Premium */}
-        <motion.div variants={item} className="glass-card p-12 flex flex-col items-center text-center">
-          <span className="text-outline font-headline text-[10px] tracking-[0.4em] uppercase mb-6 block">
-            Elite
-          </span>
-          <h3 className="font-headline text-3xl font-bold mb-8 architectural-heading uppercase">
-            PREMIUM
-          </h3>
-          <div className="text-5xl font-headline font-bold mb-12 text-primary-container">
-            $5.8M
-          </div>
-          <ul className="text-xs text-on-surface-variant font-body space-y-6 mb-16 text-left w-full border-t border-white/5 pt-8">
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary-container text-lg">
-                check_circle
-              </span>{" "}
-              Automated Parking
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary-container text-lg">
-                check_circle
-              </span>{" "}
-              Infinity Pool Access
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary-container text-lg">
-                check_circle
-              </span>{" "}
-              Enhanced Encryption
-            </li>
-          </ul>
-          <button className="w-full py-5 bg-white/5 border border-white/10 hover:bg-white hover:text-surface transition-all font-headline uppercase text-[10px] tracking-[0.3em] font-bold mt-auto">
-            Select Tier
-          </button>
-        </motion.div>
-      </motion.div>
+          {/* Tier 2 */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.1 }}
+            className="p-12 border-2 border-primary-container rounded-2xl bg-surface/80 backdrop-blur-xl relative shadow-[0_0_40px_rgba(0,240,255,0.2)] transform md:-translate-y-6"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary-container/20 blur-[40px]"></div>
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-container to-pink-500 text-black font-mono font-black text-[10px] uppercase tracking-[0.3em] px-6 py-2 rounded-b-xl">
+              Most Popular
+            </div>
+            
+            <div className="bg-primary-container/20 border border-primary-container/50 text-primary-container w-fit px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6 font-mono mt-4">LVL 50</div>
+            <h4 className="font-mono text-4xl text-white mb-2 uppercase font-black drop-shadow-md">Pro Guild Hall</h4>
+            <div className="text-5xl font-mono text-white font-black mb-8 drop-shadow-lg">15,000 <span className="text-sm font-light text-on-surface-variant">Credits</span></div>
+            <ul className="space-y-4 font-mono text-sm text-white mb-12 font-bold">
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-pink-500 text-sm">check</span> Holographic Shield</li>
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-pink-500 text-sm">check</span> 10 Server Racks</li>
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-pink-500 text-sm">check</span> Premium Arena</li>
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-pink-500 text-sm">check</span> VIP Matchmaking</li>
+            </ul>
+            <button className="w-full py-5 bg-primary-container text-black font-mono font-black uppercase text-sm tracking-[0.2em] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] transition-all rounded-xl border-2 border-white/50">
+              Claim Base
+            </button>
+          </motion.div>
+
+          {/* Tier 3 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            className="p-10 border-2 border-white/10 rounded-2xl bg-black/60 backdrop-blur-md"
+          >
+            <div className="bg-pink-500/20 text-pink-500 border border-pink-500/50 w-fit px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6 font-mono">LVL 99</div>
+            <h4 className="font-mono text-3xl text-white mb-2 uppercase font-black">God Fortress</h4>
+            <div className="text-4xl font-mono text-white font-black mb-8">50,000 <span className="text-sm font-light text-on-surface-variant">Credits</span></div>
+            <ul className="space-y-4 font-mono text-sm text-on-surface-variant mb-12 font-medium">
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-pink-500 text-sm">check</span> Invincible Firewalls</li>
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-pink-500 text-sm">check</span> Infinite Servers</li>
+              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-pink-500 text-sm">check</span> Custom Map Builder</li>
+            </ul>
+            <button className="w-full py-4 border-2 border-pink-500/50 text-pink-500 font-mono uppercase text-xs tracking-widest hover:bg-pink-500/20 transition-colors rounded-xl font-bold">
+              Unlock God Mode
+            </button>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

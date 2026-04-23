@@ -3,45 +3,29 @@ import { motion } from 'framer-motion';
 
 export function CtaSection() {
   return (
-    <section className="py-52 relative overflow-hidden bg-[#0a0a0a]">
-      <div className="absolute inset-0 opacity-40 pointer-events-none">
-        <img
-          className="w-full h-full object-cover"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr56vuz25CTpIrNdoYSryFo4Wb2IVOVXTGnxeHQ3EeXfrRUC4u7-MUb12-nUb06E-SH5-1GxyeUQ7ORi21cQ75AMtAb2dzPjuPugFH-5SYLVwXxUohgmyKdWCxv4uuA8AYGnAZnOL8WK_tkeRKVfQHpPFzibFzYiL1dET-IR1TE0NLGH62ySrdr9imvl2veldeA4cADgdRPAbwbrABiSMKy-gnZoR4qEhEyBDWqPiTG3D4--fHeFSvRBcU0dK4bh_5pn1shsr6tbo"
-          alt="CTA Background"
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+    <section className="py-40 px-4 relative overflow-hidden flex items-center justify-center min-h-[70vh]">
+      <div className="absolute inset-0 bg-black z-0"></div>
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 z-0 mix-blend-overlay"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[300px] bg-gradient-to-r from-primary-container/30 to-pink-500/30 blur-[100px] pointer-events-none z-0"></div>
 
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ type: "spring", stiffness: 80 }}
         viewport={{ once: true }}
-        className="relative z-10 max-w-4xl mx-auto px-8 text-center"
+        className="relative z-10 text-center max-w-4xl border-4 border-white/10 p-16 rounded-[3rem] bg-black/40 backdrop-blur-2xl shadow-[0_0_50px_rgba(0,240,255,0.1)]"
       >
-        <h2 className="font-headline text-5xl md:text-7xl font-bold uppercase mb-10 tracking-tighter drop-shadow-2xl">
-          Ready for <br />{" "}
-          <span className="text-primary-container">Ascension?</span>
+        <span className="font-mono text-primary-container uppercase text-xs tracking-[0.4em] mb-6 block font-bold">Initiate Protocol</span>
+        <h2 className="font-mono text-white text-5xl md:text-7xl font-black mb-10 tracking-tighter uppercase drop-shadow-xl">
+          READY TO ENTER <br className="hidden md:block"/> THE ARENA?
         </h2>
-        <p className="font-body text-on-surface-variant text-base mb-16 max-w-xl mx-auto leading-relaxed uppercase tracking-widest text-[11px]">
-          Request your biometric credentials for a private virtual viewing of the
-          Luminescent Estate.
-        </p>
-        <form className="flex flex-col md:flex-row gap-0 max-w-2xl mx-auto border border-primary-container/20 p-2 bg-black/40 backdrop-blur-md">
-          <input
-            className="flex-1 bg-transparent border-0 focus:ring-0 text-white font-body py-5 px-8 text-sm placeholder:text-white/20"
-            placeholder="Biometric ID / Email"
-            type="email"
-            required
-          />
-          <button
-            className="bg-primary-container text-on-primary-container font-headline font-black uppercase tracking-[0.3em] px-12 py-5 text-[11px] btn-glow transition-all"
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
+        <motion.button 
+           whileHover={{ scale: 1.1, boxShadow: "0 0 40px rgba(0,240,255,0.8)" }}
+           whileTap={{ scale: 0.9 }}
+           className="px-16 py-6 bg-gradient-to-r from-primary-container to-pink-500 text-white font-mono font-black uppercase tracking-[0.3em] text-lg rounded-2xl shadow-[0_0_20px_rgba(0,240,255,0.4)] border-2 border-white/50"
+        >
+          Join The Server
+        </motion.button>
       </motion.div>
     </section>
   );
